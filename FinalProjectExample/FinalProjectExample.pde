@@ -6,59 +6,31 @@
  //check documentation at github.com/gersteinj/FinalProject2013
  *********************************************************************************/
 
-/*********************************************************************************
- Here are notes on how I created the GrowBall.  Hopefully the process wil help you as well
- 
- *First step in creating the growing ball is going to be making a circle appear and grow when the mouse is pressed
- 
- *Once this was tested, I found that the ball followed the mouse, but I wanted it to stay in one place
- *x and y should only be assigned the mouse location at the moment the mouse is pressed
- *I also want d to reset to 0 each time the mouse is pressed
- 
- *Once the part above worked, I wanted the ball to stop growing if it touched a wall
- *An if statement telling it only to grow if it's not touching a wall should work
- 
- *When all of the above parts worked, I wanted to start adding more than one GrowBall
- *This means multiple x, y, and d variables
- *Now I know the basic concept behind GrowBall works, so I should probably create a class
- *Class + array or ArrayList will let me create multiples easily
- *********************************************************************************/
-int x;
-int y;
-int d;
-
+GrowBall b;
 void setup() {
   size(500, 500);
+  b=new GrowBall();
 }
 
 void draw() {
-  background(0);
-  //if the mouse is pressed, I want to create an ellipse
+  background(0,5,20);
+  //display the GrowBall
+  b.display();
   if (mousePressed) {
-    //while the mouse is pressed, I'm going to check to see if the ellipse is touching a wall
-    //If the ellipse is NOT touching a wall, the diameter increases
-    if (x+d/2<width && x-d/2>0 && y+d/2<height && y-d/2>0) {
-      d++;
-    }
-    ellipse(x, y, d, d);
+    //while the mouse is pressed, GrowBall grows
+    b.grow();
   }
 }
-//Each time I press the mouse, I reset d to 0 and move x and y to the mouse location
+
+//When I tried running it, I found that because the growBall was created in setup, x,y is 0,0
+//Each time I press the mouse, I'm going to reset GrowBall's x and y to mouseX,mouseY
+//Later, the GrowBall will only be created when I click, so this issue will go away
+//I also reset d to 0.  Later, each click will create a new GrowBall so this issue will disappear
 void mousePressed() {
-  d=0;
-  x=mouseX;
-  y=mouseY;
+  b.x=mouseX;
+  b.y=mouseY;
+  b.d=0;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /*********************************************************************************
