@@ -1,0 +1,1 @@
+5/17: Bug tracking may be done using the "issues" feature of Github instead of the excel template if you wish.
