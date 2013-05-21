@@ -23,21 +23,31 @@ void draw() {
       //If the mouse is pressed, create newBall, which retrieves the final object in the fill ArrayList
       //Grow the new ball
       GrowBall newBall = (GrowBall)fill.get(fill.size()-1);
-
       if (i!=fill.size()-1) {
+        //I'm leaving this in to for error checking for now
         if (newBall.isTouchingBall(ball)) {
           print("TOUCH");
         }
         else {
-          newBall.grow();
           print(".");
         }
+      }        
+      //I'm leaving this in to for error checking for now
+      if (newBall.isTouchingWall()) {
+        print("WALL");
       }
-      //Testing out my touch function
-      //Added if statement so I don't have the newest ball checking for intersections with itself
-    }
+      else {
+        print("<>");
+      }
+      newBall.grow();
+    }    
+
+
+    //Testing out my touch function
+    //Added if statement so I don't have the newest ball checking for intersections with itself
   }
 }
+
 
 
 //Each time I press the mouse, I create a new GrowBall and add it to the ArrayList
