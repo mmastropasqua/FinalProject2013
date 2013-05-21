@@ -21,8 +21,8 @@ void draw() {
   for (int i = 0; i < bouncers.length; i++) {
     bouncers[i].display();
     bouncers[i].wallCheck();
-    for(int j = 0; j < fill.size(); j++){
-    GrowBall ball = (GrowBall)fill.get(j);
+    for (int j = 0; j < fill.size(); j++) {
+      GrowBall ball = (GrowBall)fill.get(j);
       bouncers[i].ballCheck(ball);
     }
     bouncers[i].move();
@@ -36,15 +36,18 @@ void draw() {
       //If the mouse is pressed, create newBall, which retrieves the final object in the fill ArrayList
       //Grow the new ball
       GrowBall newBall = (GrowBall)fill.get(fill.size()-1);
-      //check to see if newBall is touching the wall
-      newBall.isTouchingWall();
       if (i!=fill.size()-1) {
         //check to see if newBall is touching other balls
         newBall.isTouchingBall(ball);
-      } 
-      //Grow function only grows if stillAlive==true
-      newBall.grow();
+      }
     }
+  }
+  //pulled newBall.grow() out of the for loop to slow it down and fix the problem of overlapping borders
+  if (mousePressed) {
+    GrowBall newBall = (GrowBall)fill.get(fill.size()-1);
+    //check to see if newBall is touching the wall
+    newBall.isTouchingWall();
+    newBall.grow();
   }
 }
 
