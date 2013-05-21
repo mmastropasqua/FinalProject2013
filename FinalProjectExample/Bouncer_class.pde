@@ -19,12 +19,15 @@ class Bouncer {
 
   void display() {
     fill(0, 255, 150);
+    noStroke();
     ellipse(x, y, d, d);
   }
 
-  void bounce() {
+  void move() {
     x+=xspeed;
     y+=yspeed;
+  }
+  void wallCheck() {
     //If the ball hits an edge, the speed changes directions
     //I'm using the absolute value so the bouncers don't get stuck on an edge
     //If the ball is touching the right edge, the ball will ALWAYS start to move to the left
@@ -39,6 +42,22 @@ class Bouncer {
     }
     if (y-d/2<=0) {
       yspeed=abs(yspeed);
+    }
+  }
+  void ballCheck(GrowBall b) {
+    if (dist(x, y, b.x, b.y)<d/2+b.d/2) {
+      if (x<b.x) {
+        xspeed=-abs(xspeed);
+      } 
+      if (x>b.x) {
+        xspeed=abs(xspeed);
+      }
+      if (y<b.y) {
+        yspeed=-abs(yspeed);
+      }
+      if (y>b.y) {
+        yspeed=abs(yspeed);
+      }
     }
   }
 }

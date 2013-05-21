@@ -1,7 +1,7 @@
 class GrowBall {
-  int x;
-  int y;
-  int d;
+  float x;
+  float y;
+  float d;
   boolean stillAlive;
 
   //Each time I create a GrowBall, diameter is 0 and x and y are the mouse coordinates
@@ -13,6 +13,8 @@ class GrowBall {
   }
   //Eventually, I'm going to have to separate display and growth, so I may as well do it now
   void display() {
+    fill(255);
+    stroke(255,0,0);
     ellipse(x, y, d, d);
   }
   //Growing is accomplished by increasing the diameter
