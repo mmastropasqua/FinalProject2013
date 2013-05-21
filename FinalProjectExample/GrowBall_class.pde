@@ -31,4 +31,14 @@ class GrowBall {
       return false;
     }
   }
+  //Next, I'm going to create a method for checking if the GrowBall touches other GrowBalls
+  boolean isTouchingBall(GrowBall b) {
+    if (dist(x, y, b.x, b.y)<d/2+b.d/2) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
+

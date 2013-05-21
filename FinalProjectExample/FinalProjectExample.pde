@@ -16,7 +16,7 @@ void draw() {
   background(0, 5, 20);
   //Here, I'm going to want to display all the GrowBalls, but only grow the newest
   //Use the for loop to display all the balls
-  for (int i = 0; i < fill.size(); i++){
+  for (int i = 0; i < fill.size(); i++) {
     GrowBall ball = (GrowBall)fill.get(i);
     ball.display();
     if (mousePressed) {
@@ -24,6 +24,16 @@ void draw() {
       //Grow the new ball
       GrowBall newBall = (GrowBall)fill.get(fill.size()-1);
       newBall.grow();
+      //Testing out my touch function
+      //Added if statement so I don't have the newest ball checking for intersections with itself
+      if (i!=fill.size()-1) {
+        if (newBall.isTouchingBall(ball)) {
+          print("TOUCH");
+        }
+        else {
+          print(".");
+        }
+      }
     }
   }
 }
