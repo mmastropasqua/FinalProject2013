@@ -23,17 +23,18 @@ void draw() {
       //If the mouse is pressed, create newBall, which retrieves the final object in the fill ArrayList
       //Grow the new ball
       GrowBall newBall = (GrowBall)fill.get(fill.size()-1);
-      newBall.grow();
-      //Testing out my touch function
-      //Added if statement so I don't have the newest ball checking for intersections with itself
+
       if (i!=fill.size()-1) {
         if (newBall.isTouchingBall(ball)) {
           print("TOUCH");
         }
         else {
+          newBall.grow();
           print(".");
         }
       }
+      //Testing out my touch function
+      //Added if statement so I don't have the newest ball checking for intersections with itself
     }
   }
 }
