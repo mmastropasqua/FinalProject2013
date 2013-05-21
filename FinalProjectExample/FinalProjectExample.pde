@@ -23,59 +23,45 @@ void draw() {
       //If the mouse is pressed, create newBall, which retrieves the final object in the fill ArrayList
       //Grow the new ball
       GrowBall newBall = (GrowBall)fill.get(fill.size()-1);
+      //check to see if newBall is touching the wall
+      newBall.isTouchingWall();
       if (i!=fill.size()-1) {
-        //I'm leaving this in to for error checking for now
-        if (newBall.isTouchingBall(ball)) {
-          print("TOUCH");
-        }
-        else {
-          print(".");
-        }
-      }        
-      //I'm leaving this in to for error checking for now
-      if (newBall.isTouchingWall()) {
-        print("WALL");
-      }
-      else {
-        print("<>");
-      }
-      newBall.grow();
-    }    
-
-
-    //Testing out my touch function
-    //Added if statement so I don't have the newest ball checking for intersections with itself
+        //check to see if newBall is touching other balls
+        newBall.isTouchingBall(ball);
+      } 
+      //Grow function only grows if stillAlive==true
+      newBall.grow();   
+    }
   }
 }
 
 
+  //Each time I press the mouse, I create a new GrowBall and add it to the ArrayList
+  void mousePressed() {
+    fill.add(new GrowBall());
+  }
 
-//Each time I press the mouse, I create a new GrowBall and add it to the ArrayList
-void mousePressed() {
-  fill.add(new GrowBall());
-}
 
-
-/*********************************************************************************
- Everything below this line is from my test of the bouncers
- 
- 
- //Started with making sure my bouncers work
- 
- //create array of 5 bouncers
- Bouncer[] bouncers = new Bouncer[5];
- 
- void setup() {
- size(700, 300);
- for (int i = 0; i < bouncers.length; i++) {
- bouncers[i] = new Bouncer();
- }
- }
- void draw() {
- background(0);
- for (int i = 0; i < bouncers.length; i++) {
- bouncers[i].display();
- bouncers[i].bounce();
- }
- }
- *********************************************************************************/
+  /*********************************************************************************
+   Everything below this line is from my test of the bouncers
+   
+   
+   //Started with making sure my bouncers work
+   
+   //create array of 5 bouncers
+   Bouncer[] bouncers = new Bouncer[5];
+   
+   void setup() {
+   size(700, 300);
+   for (int i = 0; i < bouncers.length; i++) {
+   bouncers[i] = new Bouncer();
+   }
+   }
+   void draw() {
+   background(0);
+   for (int i = 0; i < bouncers.length; i++) {
+   bouncers[i].display();
+   bouncers[i].bounce();
+   }
+   }
+   *********************************************************************************/

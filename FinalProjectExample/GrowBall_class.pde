@@ -16,7 +16,7 @@ class GrowBall {
     ellipse(x, y, d, d);
   }
   //Growing is accomplished by increasing the diameter
-  //Only grow if GrowBall isn't touching wall
+  //Only grow if GrowBall is stillAlive
   void grow() {
     //check to see if stillAlive is true before doing growth.
     if (stillAlive==true) {
@@ -38,7 +38,7 @@ class GrowBall {
   //Next, I'm going to create a method for checking if the GrowBall touches other GrowBalls
   boolean isTouchingBall(GrowBall b) {
     if (dist(x, y, b.x, b.y)<d/2+b.d/2) {
-      //if it's touching, set stillAlive to false.  this may be the fix for issue #4!
+      //if it's touching, set stillAlive to false
       stillAlive=false;
       return true;
     }
