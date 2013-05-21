@@ -5,31 +5,33 @@
  
  //check documentation at github.com/gersteinj/FinalProject2013
  *********************************************************************************/
+//create an ArrayList so it's easy to add new GrowBalls
+ArrayList fill = new ArrayList();
 
-GrowBall b;
 void setup() {
   size(500, 500);
-  b=new GrowBall();
 }
 
 void draw() {
-  background(0,5,20);
-  //display the GrowBall
-  b.display();
-  if (mousePressed) {
-    //while the mouse is pressed, GrowBall grows
-    b.grow();
+  background(0, 5, 20);
+  //Here, I'm going to want to display all the GrowBalls, but only grow the newest
+  //Use the for loop to display all the balls
+  for (int i = 0; i < fill.size(); i++){
+    GrowBall ball = (GrowBall)fill.get(i);
+    ball.display();
+    if (mousePressed) {
+      //If the mouse is pressed, create newBall, which retrieves the final object in the fill ArrayList
+      //Grow the new ball
+      GrowBall newBall = (GrowBall)fill.get(fill.size()-1);
+      newBall.grow();
+    }
   }
 }
 
-//When I tried running it, I found that because the growBall was created in setup, x,y is 0,0
-//Each time I press the mouse, I'm going to reset GrowBall's x and y to mouseX,mouseY
-//Later, the GrowBall will only be created when I click, so this issue will go away
-//I also reset d to 0.  Later, each click will create a new GrowBall so this issue will disappear
+
+//Each time I press the mouse, I create a new GrowBall and add it to the ArrayList
 void mousePressed() {
-  b.x=mouseX;
-  b.y=mouseY;
-  b.d=0;
+  fill.add(new GrowBall());
 }
 
 
