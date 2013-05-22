@@ -14,7 +14,7 @@ class GrowBall {
   //Eventually, I'm going to have to separate display and growth, so I may as well do it now
   void display() {
     fill(255);
-    stroke(255,0,0);
+    stroke(255, 0, 0);
     ellipse(x, y, d, d);
   }
   //Growing is accomplished by increasing the diameter
@@ -42,6 +42,7 @@ class GrowBall {
     if (dist(x, y, b.x, b.y)<d/2+b.d/2) {
       //if it's touching, set stillAlive to false
       stillAlive=false;
+
       return true;
     }
     else {

@@ -46,6 +46,13 @@ class Bouncer {
   }
   void ballCheck(GrowBall b) {
     if (dist(x, y, b.x, b.y)<d/2+b.d/2) {
+      if (b.stillAlive) {
+        print("DIE!!!");
+        b.stillAlive=false;
+      }
+      else {
+        print("meh");
+      }
       if (x<b.x) {
         xspeed=-abs(xspeed);
       } 
