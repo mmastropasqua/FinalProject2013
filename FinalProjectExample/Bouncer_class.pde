@@ -49,12 +49,12 @@ class Bouncer {
   boolean ballCheck(GrowBall b) {
     if (dist(x, y, b.x, b.y)<d/2+b.d/2) {
       if (b.stillAlive) {
-        print("DIE!!!");
+//        print("DIE!!!");
         b.stillAlive=false;
         return true;
       }
       else {
-        print("meh");
+//        print("meh");
       }
       if (x<b.x) {
         xspeed=-abs(xspeed);

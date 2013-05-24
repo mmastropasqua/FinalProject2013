@@ -10,8 +10,13 @@ ArrayList fill = new ArrayList();   //create array of 5 bouncers
 Bouncer[] bouncers = new Bouncer[5];
 int lives = 20;
 
+int area;
+int whitePixels=0;
+
 void setup() {
-  size(500, 500);   
+  size(500, 500);
+  //Calculate area of display
+  area=width*height;  
   for (int i = 0; i < bouncers.length; i++) {
     bouncers[i] = new Bouncer();
   }
@@ -19,9 +24,7 @@ void setup() {
 
 void draw() {
   background(0, 5, 20);
-  fill(255);
-  textSize(50);
-  text("lives: " + lives, 50,height-50);
+
   for (int i = 0; i < bouncers.length; i++) {
     bouncers[i].display();
     bouncers[i].wallCheck();
@@ -57,12 +60,27 @@ void draw() {
     newBall.isTouchingWall();
     newBall.grow();
   }
+  fill(0, 0, 255);
+  textSize(50);
+  text("lives: " + lives, 50, height-50);
 }
 
 
 //Each time I press the mouse, I create a new GrowBall and add it to the ArrayList
 void mousePressed() {
   fill.add(new GrowBall());
+}
+
+void mouseReleased(){
+  loadPixels();
+  whitePixels=0;
+  for(int i = 0; i < pixels.length; i++){
+    if(pixels[i] == color(255)){
+     whitePixels++; 
+    }
+  }
+ 
+  println("\narea to fill: " + area + "\nwhite pixels: " + whitePixels);
 }
 
 
