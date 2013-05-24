@@ -12,11 +12,13 @@ int lives = 20;
 
 int area;
 int whitePixels=0;
+float threshold;
 
 void setup() {
   size(500, 500);
   //Calculate area of display
-  area=width*height;  
+  area=width*height;
+  threshold=area*.8;  
   for (int i = 0; i < bouncers.length; i++) {
     bouncers[i] = new Bouncer();
   }
@@ -71,16 +73,20 @@ void mousePressed() {
   fill.add(new GrowBall());
 }
 
-void mouseReleased(){
+void mouseReleased() {
+  //The next two lines set the stillAlive variable of the newest GrowBall to false when mouse is released
+  //This fixes the problem of balls getting hit and causing a loss of life when no longer actually growing
+  GrowBall newBall = (GrowBall)fill.get(fill.size()-1);
+  newBall.stillAlive=false;
   loadPixels();
   whitePixels=0;
-  for(int i = 0; i < pixels.length; i++){
-    if(pixels[i] == color(255)){
-     whitePixels++; 
+  for (int i = 0; i < pixels.length; i++) {
+    if (pixels[i] == color(255)) {
+      whitePixels++;
     }
   }
- 
-  println("\narea to fill: " + area + "\nwhite pixels: " + whitePixels);
+
+  println("\narea to fill: " + area + "\nwhite pixels: " + whitePixels + "\nneeded to advance: " + threshold);
 }
 
 
