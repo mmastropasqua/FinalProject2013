@@ -44,11 +44,14 @@ class Bouncer {
       yspeed=abs(yspeed);
     }
   }
-  void ballCheck(GrowBall b) {
+  //This will only return true when the a bouncer causes a ball to stop growing
+  //When it returns true, I'll decrease the number of lives
+  boolean ballCheck(GrowBall b) {
     if (dist(x, y, b.x, b.y)<d/2+b.d/2) {
       if (b.stillAlive) {
         print("DIE!!!");
         b.stillAlive=false;
+        return true;
       }
       else {
         print("meh");
@@ -66,6 +69,7 @@ class Bouncer {
         yspeed=abs(yspeed);
       }
     }
+    return false;
   }
 }
 

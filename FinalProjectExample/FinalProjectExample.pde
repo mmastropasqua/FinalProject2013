@@ -8,6 +8,7 @@
 //create an ArrayList so it's easy to add new GrowBalls
 ArrayList fill = new ArrayList();   //create array of 5 bouncers
 Bouncer[] bouncers = new Bouncer[5];
+int lives = 20;
 
 void setup() {
   size(500, 500);   
@@ -17,13 +18,20 @@ void setup() {
 }
 
 void draw() {
-  background(0, 5, 20);  
+  background(0, 5, 20);
+  fill(255);
+  textSize(50);
+  text("lives: " + lives, 50,height-50);
   for (int i = 0; i < bouncers.length; i++) {
     bouncers[i].display();
     bouncers[i].wallCheck();
     for (int j = 0; j < fill.size(); j++) {
       GrowBall ball = (GrowBall)fill.get(j);
-      bouncers[i].ballCheck(ball);
+      //Made this into an if statement to decrease lives
+      //May eventually split the bouncing and life checking into two methods for clarity
+      if (bouncers[i].ballCheck(ball)) {
+        lives--;
+      }
     }
     bouncers[i].move();
   }
