@@ -12,13 +12,13 @@ int lives = 20;
 
 int area;
 int whitePixels=0;
-float threshold;
+int threshold;
 
 void setup() {
   size(500, 500);
   //Calculate area of display
   area=width*height;
-  threshold=area*.8;  
+  threshold=int(area*.6);  
   for (int i = 0; i < bouncers.length; i++) {
     bouncers[i] = new Bouncer();
   }
@@ -87,6 +87,9 @@ void mouseReleased() {
   }
 
   println("\narea to fill: " + area + "\nwhite pixels: " + whitePixels + "\nneeded to advance: " + threshold);
+  if (whitePixels>threshold) {
+    println("WINNER");
+  }
 }
 
 
